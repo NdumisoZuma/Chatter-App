@@ -10,9 +10,17 @@ import {sendMessage, isTyping} from 'react-chat-engine';
 const MessageForm = (props) => {
 
   const  [value, setValue] = useState('');
-  const {chatId,creds} = props
+  const {chatId, creds} = props;
 
-const handleSubmit = (event) => {
+  const handleChange = (event) => {
+    setValue(event.target.value);
+
+    isTyping(props, chatId);
+
+};
+
+const handleSubmit = (event) => 
+{
 
     // prevents a browser refresh after submitting
     event.preventDefault();
@@ -21,18 +29,13 @@ const handleSubmit = (event) => {
     //if text length is greater than 0 sendMessage
     //sendMessage comes from react
 
-    if(text.length > 0) {sendMessage(creds, chatId, { text });}
+    if(text.length > 0) sendMessage(creds, chatId, { text });
 
     setValue ('');
 
 };
 
-const handleChange = (event) => {
-    setValue(event.target.value);
 
-    isTyping(props, chatId);
-
-};
 
 const handleUpload = (event) => {
     sendMessage(creds, chatId, { files: event.target.files, text: ''});

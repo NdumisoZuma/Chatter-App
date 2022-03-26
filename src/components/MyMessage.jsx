@@ -2,7 +2,7 @@
 
 const MyMessage = ({message}) => {
     //If an image length is greater than 0 then return image component
-if(message.attachments.length > 0)
+if(message.attachments.length && message.attachments > 0)
 {
     return(
         <img
